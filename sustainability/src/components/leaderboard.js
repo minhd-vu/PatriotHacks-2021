@@ -1,38 +1,44 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function Profile() {
-    const [players, setPlayers] = useState([]);
+export default function Leaderboard() {
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        let isMounted = true;
         axios.get("/api/leaderboard", { withCredentials: true })
             .then(res => {
                 if (res.status === 200) {
-                    isMounted && setPlayers(res.data.map(player =>
-                        <tr key={player.username}>
-                            <td>{player.rank}</td>
+                    console.log(res.data);
+
+                    res.data && setUsers(res.data.map((e, i) => (
+                        <tr key={e.username}>
+                            <td>{i + 1}</td>
+                            <td>{e.username}</td>
+                            <td>{e.hours}</td>
+                            <td>{e.amount}</td>
                         </tr>
-                    ));
+                    )));
                 }
             })
             .catch(err => {
                 console.log(err);
             });
-        return () => { isMounted = false };
     }, []);
 
     return (
         <React.Fragment>
-            <h3>Leaderboard</h3>
+            <h3>Global Leaderboard</h3>
             <table className="table">
                 <thead className="thead-light">
                     <tr>
-                        <th scope="col">Column</th>
+                        <th scope="col">Rank</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Hours</th>
+                        <th scope="col">Amount</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {players}
+                    {users}
                 </tbody>
             </table>
         </React.Fragment>

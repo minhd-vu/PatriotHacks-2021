@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import Group from "./group/group"
-import GroupForm from "./group/group.form"
+import Profile from "./profile";
+import Login from "./auth/login";
 import { UserContext } from "../contexts/user.context";
 
 export default function Home() {
     const user = useContext(UserContext);
-
+    console.log(user);
     return (
-        user.group ? <Group /> : <GroupForm />
+       <Profile />
     );
 }

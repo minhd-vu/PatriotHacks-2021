@@ -1,14 +1,10 @@
 const router = require("express").Router();
-const isLoggedIn = require("../../helpers/isLoggedIn");
+const User = require("../models/user.model");
 
-router.route("/").get(isLoggedIn, async function (req, res) {
-    await req.user.execPopulate("group");
-    await req.user.group?.execPopulate("users");
-    await req.user.group?.execPopulate("users.entries");
-
-    let users = req.user.group?.users;
-    let data = [];
-
+router.route("/").get(async function (req, res) {
+    const users = await User.find({}).populate("entries").exec();
+    const data = []
+    
     users.forEach(user => {
         user.totalHours = 0;
         user.totalAmount = 0;
@@ -21,7 +17,7 @@ router.route("/").get(isLoggedIn, async function (req, res) {
         data.push({
             username: user.username,
             hours: user.totalHours,
-            amount: user.totalAmount
+            amount: user.totalAmount,
         });
     });
 

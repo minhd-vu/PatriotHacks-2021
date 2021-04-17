@@ -18,7 +18,7 @@ export default function Register() {
             return setError("Passwords do not match.");
         }
 
-        axios.post("/api/register", { username: username, password: password }, { withCredentials: true })
+        axios.post("/api/register", { username: username.trim().toLowerCase(), password: password }, { withCredentials: true })
             .then(res => {
                 if (res.status === 200) {
                     user.setUsername(username);
@@ -72,7 +72,7 @@ export default function Register() {
                     />
                 </div>
                 <div className="form-group">
-                    <input type="submit" value="Register" className="btn btn-primary" />
+                    <input type="submit" value="Register" className="btn btn-success" />
                 </div>
             </form>
         </div>

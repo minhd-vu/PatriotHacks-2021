@@ -51,8 +51,9 @@ app.use("/api/create", require("./routes/group/create"));
 app.use("/api/join", require("./routes/group/join"));
 app.use("/api/leave", require("./routes/group/leave"));
 app.use("/api/group", require("./routes/group/group"));
-// app.use("/api/user", require("./routes/user"));
-// app.use("/api/leaderboard", require("./routes/leaderboard"));
+app.use("/api/entry", require("./routes/entry/entry"));
+app.use("/api/user", require("./routes/user"));
+app.use("/api/leaderboard", require("./routes/leaderboard"));
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../build/index.html"));

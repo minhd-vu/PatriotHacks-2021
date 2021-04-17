@@ -27,7 +27,7 @@ export default function GroupCreate() {
     return (
         <form onSubmit={onCreateGroup}>
             <div className="form-group">
-                <input type="submit" value="Create Group" className="btn btn-primary" />
+                <input type="submit" value="Create Group" className="btn btn-success" />
             </div>
         </form>
     );

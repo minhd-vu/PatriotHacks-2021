@@ -41,7 +41,7 @@ export default function GroupJoin(props) {
                 />
             </div>
             <div className="form-group">
-                <input type="submit" value="Join Group" className="btn btn-primary" />
+                <input type="submit" value="Join Group" className="btn btn-success" />
             </div>
         </form>
     );

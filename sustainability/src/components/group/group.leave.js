@@ -22,10 +22,9 @@ export default function GroupLeave() {
 
     return (
         <React.Fragment>
-            <br />
             <form onSubmit={onLeaveGroup}>
                 <div className="form-group">
-                    <input type="submit" value="Leave Group" className="btn btn-primary" />
+                    <input type="submit" value="Leave Group" className="btn btn-success" />
                 </div>
             </form>
         </React.Fragment>

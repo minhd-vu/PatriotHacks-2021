@@ -20,7 +20,7 @@ export default function Header() {
                             user.isAuth ?
                                 <React.Fragment>
                                     <Logout />
-                                    <Nav.Link as={Link} to={"/user/" + user.username}>Profile</Nav.Link>
+                                    <Nav.Link as={Link} to={"/groups"}>Groups</Nav.Link>
                                 </React.Fragment> :
                                 <React.Fragment>
                                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
