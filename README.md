@@ -18,5 +18,5 @@
 * Join lobbies and pair up with friends
 * Allow users to input how much trash they picked up
   * Track who picks up the most trash in a time period with a leaderboard
-  * Have party and global leaderboards
+  * Have group and global leaderboards
 * Organize events to pick up trash with friends
