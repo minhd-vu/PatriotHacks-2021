@@ -12,6 +12,7 @@ import Help from "./components/help";
 import Profile from "./components/profile";
 import Groups from "./components/groups";
 import Leaderboard from "./components/leaderboard";
+import Home from "./components/home";
 import { UserContext } from "./contexts/user.context";
 
 export default class App extends Component {
@@ -37,7 +38,7 @@ export default class App extends Component {
 				<Header />
 				<br />
 				<Container>
-					<Route path="/" exact component={Profile} />
+					<Route path="/" exact component={Home} />
 					<Route path="/login" component={Login} />
 					<Route path="/register" component={Register} />
 					<Route path="/user/:username" render={props => <Profile {...props} />} />
