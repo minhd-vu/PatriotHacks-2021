@@ -7,6 +7,10 @@ import { createContext } from "react"
 function Expense(props) {
     const { expenses, setExpenses } = createContext(BudgetContext)
     
+    const handleClick = (e) => {
+        
+    } 
+
     return (
         <div>
             <Container>
