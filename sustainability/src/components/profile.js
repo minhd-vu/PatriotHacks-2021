@@ -39,7 +39,7 @@ export default function Profile(props) {
             <EntryForm />
             {
                 error ?
-                    <Alert key="danger" variant="danger">No user found with username <b>{user.username}</b>.</Alert> :
+                    <Alert key="danger" variant="danger">No user found with username <b>{username}</b>.</Alert> :
                     <table className="table">
                         <thead className="thead-light">
                             <tr>
