@@ -3,6 +3,7 @@ import axios from "axios";
 
 export default function Leaderboard() {
     const [users, setUsers] = useState([]);
+    const [stats, setStats] = useState([]);
 
     useEffect(() => {
         axios.get("/api/leaderboard", { withCredentials: true })
@@ -10,14 +11,32 @@ export default function Leaderboard() {
                 if (res.status === 200) {
                     console.log(res.data);
 
-                    res.data && setUsers(res.data.map((e, i) => (
-                        <tr key={e.username}>
-                            <td>{i + 1}</td>
-                            <td>{e.username}</td>
-                            <td>{e.hours}</td>
-                            <td>{e.amount}</td>
-                        </tr>
-                    )));
+                    if (res.data) {
+                        setUsers(res.data.map((e, i) => (
+                            <tr key={e.username}>
+                                <td>{i + 1}</td>
+                                <td>{e.username}</td>
+                                <td>{e.hours}</td>
+                                <td>{e.amount}</td>
+                            </tr>
+                        )));
+
+                        let totalHours = 0;
+                        let totalAmount = 0;
+
+                        res.data.forEach(e => {
+                            totalHours += e.hours;
+                            totalAmount += e.amount;
+                        });
+
+                        setStats(
+                            <tr>
+                                <td>{res.data.length}</td>
+                                <td>{totalHours}</td>
+                                <td>{totalAmount}</td>
+                            </tr>
+                        );
+                    }
                 }
             })
             .catch(err => {
@@ -27,7 +46,20 @@ export default function Leaderboard() {
 
     return (
         <React.Fragment>
-            <h3>Global Leaderboard</h3>
+            <h3>Statistics</h3>
+            <table className="table">
+                <thead className="thead-light">
+                    <tr>
+                        <th scope="col">Total Users</th>
+                        <th scope="col">Total Hours</th>
+                        <th scope="col">Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {stats}
+                </tbody>
+            </table>
+            <h3>Leaderboard</h3>
             <table className="table">
                 <thead className="thead-light">
                     <tr>

@@ -30,7 +30,7 @@ export default function Header() {
                         <Nav.Link as={Link} to="/help">Help</Nav.Link>
                     </Nav>
                     <Nav className="ml-auto">
-                        <Nav.Link as={Link} to="/leaderboard">Leaderboard</Nav.Link>
+                        <Nav.Link as={Link} to="/global">Global</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
