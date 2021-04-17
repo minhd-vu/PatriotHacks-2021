@@ -1,24 +1,20 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Alert from "react-bootstrap/Alert";
 import { UserContext } from "../contexts/user.context";
 import EntryForm from "./entry/entry.form";
 
-export default function Profile() {
+export default function Profile(props) {
     const user = useContext(UserContext);
-    const history = useHistory();
     const [table, setTable] = useState([]);
+    const [username, setUsername] = useState([]);
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        console.log(user)
+        let username = props.match?.params?.username || user.username;
+        setUsername(username);
 
-        if (!user.isAuth) {
-            return history.push("/login");
-        }
-
-        axios.get("/api/user/" + user.username, { withCredentials: true })
+        axios.get("/api/user/" + username, { withCredentials: true })
             .then(res => {
                 if (res.status === 200) {
                     setTable(res.data.entries?.slice(0).reverse().map(entry =>
@@ -33,20 +29,17 @@ export default function Profile() {
                 } else if (res.status === 204) {
                     setError(true);
                 }
-
             })
-            .catch(err => {
-                console.log(err);
-            });
-    }, [user]);
+            .catch(err => console.log(err));
+    }, [username, props]);
 
     return (
         <React.Fragment>
-            <h3>{user.username}'s Sustainability Profile</h3>
+            <h3>{username}'s Sustainability Profile</h3>
             <EntryForm />
             {
                 error ?
-                    <Alert key="danger" variant="danger">No user found with username <b>{user.username}</b>.</Alert> :
+                    <Alert key="danger" variant="danger">No user found with username <b>{username}</b>.</Alert> :
                     <table className="table">
                         <thead className="thead-light">
                             <tr>
