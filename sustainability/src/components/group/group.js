@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
 import axios from "axios";
 // import PartyLeave from "./party.leave";
@@ -14,7 +14,7 @@ export default function Group() {
     const [error, setError] = useState("");
     const [delay, setDelay] = useState(0);
 
-    function getGroup() {
+    useEffect(() => {
         axios.get("/api/group", { withCredentials: true })
             .then(res => {
                 if (res.status === 200) {
@@ -34,12 +34,7 @@ export default function Group() {
             .catch(err => {
                 console.log(err);
             });
-    }
-
-    useInterval(() => {
-        getGroup();
-        setDelay(1000);
-    }, delay);
+    });
 
     return (
         <div className="text-center">

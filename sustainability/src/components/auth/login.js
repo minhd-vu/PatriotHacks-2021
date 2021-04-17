@@ -13,12 +13,15 @@ export default function Login() {
     function onSubmit(e) {
         e.preventDefault();
 
-        axios.post("/api/login", { username: username, password: password }, { withCredentials: true })
+        axios.post("/api/login", {
+            username: username.trim().toLowerCase(),
+            password: password,
+        }, { withCredentials: true })
             .then(res => {
                 console.log(res);
                 if (res.status === 200) {
                     user.setAuth(true);
-                    user.setUsername(res.data.username.trim().toLowerCase());
+                    user.setUsername(res.data.username);
                     user.setGroup(res.data.group);
                     history.push("/");
                 }
@@ -59,7 +62,7 @@ export default function Login() {
                     />
                 </div>
                 <div className="form-group">
-                    <input type="submit" value="Login" className="btn btn-primary"/>
+                    <input type="submit" value="Login" className="btn btn-primary" />
                 </div>
             </form>
         </div>
