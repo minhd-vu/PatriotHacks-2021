@@ -19,7 +19,7 @@ export default function Group() {
                             <td>{i + 1}</td>
                             <td>{e.username}</td>
                             <td>{e.hours}</td>
-                            <td>{e.amount}</td>
+                            <td>{e.bags}</td>
                         </tr>
                     )));
                 }
@@ -41,7 +41,7 @@ export default function Group() {
                         <th scope="col">Rank</th>
                         <th scope="col">Username</th>
                         <th scope="col">Hours</th>
-                        <th scope="col">Amount</th>
+                        <th scope="col">Bags</th>
                     </tr>
                 </thead>
                 <tbody>

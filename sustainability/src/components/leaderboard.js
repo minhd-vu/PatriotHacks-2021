@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Statistics from "./statistics";
 
 export default function Leaderboard() {
     const [users, setUsers] = useState([]);
-    const [stats, setStats] = useState([]);
+    const [stats, setStats] = useState({});
 
     useEffect(() => {
         axios.get("/api/leaderboard", { withCredentials: true })
@@ -17,25 +18,23 @@ export default function Leaderboard() {
                                 <td>{i + 1}</td>
                                 <td>{e.username}</td>
                                 <td>{e.hours}</td>
-                                <td>{e.amount}</td>
+                                <td>{e.bags}</td>
                             </tr>
                         )));
 
                         let totalHours = 0;
-                        let totalAmount = 0;
+                        let totalBags = 0;
 
                         res.data.forEach(e => {
                             totalHours += e.hours;
-                            totalAmount += e.amount;
+                            totalBags += e.bags;
                         });
 
-                        setStats(
-                            <tr>
-                                <td>{res.data.length}</td>
-                                <td>{totalHours}</td>
-                                <td>{totalAmount}</td>
-                            </tr>
-                        );
+                        setStats({
+                            totalUsers: res.data.length,
+                            totalHours: totalHours.toFixed(2),
+                            totalBags: totalBags.toFixed(2),
+                        });
                     }
                 }
             })
@@ -46,19 +45,8 @@ export default function Leaderboard() {
 
     return (
         <React.Fragment>
-            <h3>Statistics</h3>
-            <table className="table">
-                <thead className="thead-light">
-                    <tr>
-                        <th scope="col">Total Users</th>
-                        <th scope="col">Total Hours</th>
-                        <th scope="col">Total Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {stats}
-                </tbody>
-            </table>
+            <Statistics {...stats} />
+            <br />
             <h3>Leaderboard</h3>
             <table className="table">
                 <thead className="thead-light">
@@ -66,7 +54,7 @@ export default function Leaderboard() {
                         <th scope="col">Rank</th>
                         <th scope="col">Username</th>
                         <th scope="col">Hours</th>
-                        <th scope="col">Amount</th>
+                        <th scope="col">Bags</th>
                     </tr>
                 </thead>
                 <tbody>

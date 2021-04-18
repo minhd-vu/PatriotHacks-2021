@@ -6,9 +6,9 @@ router.route("/").post(isLoggedIn, async function (req, res) {
     console.log(req.user);
 
     const entry = new Entry({
-        desc: req.body.desc,
+        location: req.body.location,
         hours: req.body.hours,
-        amount: req.body.amount,
+        bags: req.body.bags,
     });
 
     await entry.save();

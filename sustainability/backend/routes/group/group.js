@@ -11,21 +11,21 @@ router.route("/").get(isLoggedIn, async function (req, res) {
 
     users.forEach(user => {
         user.totalHours = 0;
-        user.totalAmount = 0;
+        user.totalBags = 0;
 
         user.entries.forEach(entry => {
             user.totalHours += entry.hours;
-            user.totalAmount += entry.amount;
+            user.totalBags += entry.bags;
         });
 
         data.push({
             username: user.username,
             hours: user.totalHours,
-            amount: user.totalAmount
+            bags: user.totalBags,
         });
     });
 
-    data.sort((a, b) => - (b.hours + b.amount) - (a.hours + a.amount));
+    data.sort((a, b) => - (b.hours + b.bags) - (a.hours + a.bags));
     res.status(200).send(data);
 });
 

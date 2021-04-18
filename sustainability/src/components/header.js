@@ -12,16 +12,18 @@ import FormControl from "react-bootstrap/FormControl";
 export default function Header() {
     const user = useContext(UserContext);
     const history = useHistory();
+    const [search, setSearch] = useState("");
 
     function onSubmit(e) {
         e.preventDefault();
-        history.push("/user/" + e.target[0].value);
+        setSearch("")
+        history.push("/user/" + search.trim().toLowerCase());
     }
 
     return (
         <Navbar collapseOnSelect expand="sm" bg="success" variant="dark" sticky="top">
             <Container>
-                <Navbar.Brand as={Link} to="/">Hack Sustainability</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">Sustainateers</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
@@ -36,12 +38,18 @@ export default function Header() {
                                     <Nav.Link as={Link} to="/register">Register</Nav.Link>
                                 </React.Fragment>
                         }
-                        <Nav.Link as={Link} to="/help">Help</Nav.Link>
+                        <Nav.Link as={Link} to="/about">About</Nav.Link>
                         <Nav.Link as={Link} to="/global">Global</Nav.Link>
                     </Nav>
                     <Nav className="ml-auto">
                         <Form inline onSubmit={onSubmit}>
-                            <FormControl type="text" placeholder="Search User" className="mr-sm-2" />
+                            <FormControl
+                                type="text"
+                                placeholder="Search User"
+                                value={search}
+                                onChange={e => setSearch(e.target.value)}
+                                className="mr-sm-2"
+                            />
                             <input type="submit" value="Search" className="btn btn-light" />
                         </Form>
                     </Nav>

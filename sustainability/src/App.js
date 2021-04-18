@@ -8,7 +8,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import Login from "./components/auth/login";
 import Register from "./components/auth/register";
-import Help from "./components/help";
+import About from "./components/about";
 import Profile from "./components/profile";
 import Groups from "./components/groups";
 import Leaderboard from "./components/leaderboard";
@@ -43,7 +43,7 @@ export default class App extends Component {
 					<Route path="/register" component={Register} />
 					<Route path="/user/:username" render={props => <Profile {...props} />} />
 					<Route path="/groups" component={Groups} />
-					<Route path="/help" component={Help} />
+					<Route path="/about" component={About} />
 					<Route path="/global" component={Leaderboard} />
 				</Container>
 				<br />

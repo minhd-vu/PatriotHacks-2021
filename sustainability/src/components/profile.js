@@ -20,9 +20,9 @@ export default function Profile(props) {
                     setTable(res.data.entries?.slice(0).reverse().map(entry =>
                         <tr key={entry.createdAt}>
                             <td>{new Date(entry.createdAt).toLocaleString()}</td>
-                            <td>{entry.desc}</td>
+                            <td>{entry.location}</td>
                             <td>{entry.hours}</td>
-                            <td>{entry.amount}</td>
+                            <td>{entry.bags}</td>
                         </tr>
                     ));
                     setError(false);
@@ -36,7 +36,9 @@ export default function Profile(props) {
     return (
         <React.Fragment>
             <h3>{username}'s Sustainability Profile</h3>
-            <EntryForm />
+            {
+                user.username === username && <EntryForm />
+            }
             {
                 error ?
                     <Alert key="danger" variant="danger">No user found with username <b>{username}</b>.</Alert> :
@@ -44,9 +46,9 @@ export default function Profile(props) {
                         <thead className="thead-light">
                             <tr>
                                 <th scope="col">Date</th>
-                                <th scope="col">Description</th>
+                                <th scope="col">Location</th>
                                 <th scope="col">Hours</th>
-                                <th scope="col">Amount</th>
+                                <th scope="col">Bags</th>
                             </tr>
                         </thead>
                         <tbody>
