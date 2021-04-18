@@ -55,14 +55,14 @@ def custom(tell):
 
 app = Flask(__name__)
 
-@app.route("/no")
+@app.route("/")
 def home():
     return "hello <h1>yo<h1>"
 
 @app.route("/<t>")
 def user(t):
     #return f"Hello{val}!"
-    custom(t)
+    return custom(t)
 
 
 if __name__ == "__main__":
