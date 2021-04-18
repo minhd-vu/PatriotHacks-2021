@@ -14,6 +14,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "mapbox-gl": "^2.2.0",
     "mongoose": "^5.12.4",
     "nanoid": "^3.1.22",
     "passport": "^0.4.1",
@@ -29,7 +30,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "use-places-autocomplete": "^1.9.1",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "worker-loader": "^3.0.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -48,7 +50,10 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "not ie 11",
+      "not chrome < 51",
+      "not safari < 10"
     ],
     "development": [
       "last 1 chrome version",

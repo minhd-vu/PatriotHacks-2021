@@ -3,6 +3,10 @@ import ReactMapGL, { FullscreenControl, GeolocateControl, NavigationControl, Mar
 import Pin from "./pin";
 import axios from "axios";
 
+// eslint-disable-next-line import/no-webpack-loader-syntax
+// import mapboxgl from "mapbox-gl/dist/mapbox-gl-csp";
+// mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+
 export default function Map() {
 	const [viewport, setViewport] = useState({
 		latitude: 38.8298,
