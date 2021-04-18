@@ -25,7 +25,7 @@ router.route("/").get(isLoggedIn, async function (req, res) {
         });
     });
 
-    data.sort((a, b) => - (b.hours + b.bags) - (a.hours + a.bags));
+    data.sort((a, b) => (b.hours + b.bags) - (a.hours + a.bags));
     res.status(200).send(data);
 });
 

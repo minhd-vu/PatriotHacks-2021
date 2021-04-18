@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
 import axios from "axios";
-import EntryForm from "../entry/entry.form"
 import GroupLeave from "./group.leave";
 
 export default function Group() {
@@ -18,8 +17,8 @@ export default function Group() {
                         <tr key={e.username}>
                             <td>{i + 1}</td>
                             <td>{e.username}</td>
-                            <td>{e.hours}</td>
-                            <td>{e.bags}</td>
+                            <td>{e.hours.toFixed(2)}</td>
+                            <td>{e.bags.toFixed(2)}</td>
                         </tr>
                     )));
                 }
