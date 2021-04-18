@@ -61,7 +61,7 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route("/", methods=["GET"])
 def home():
-    data = [{'title' : "gamestop", 'url' : "ffefe.com"}, {'title':"geico", 'url':"frfr.com"}]
+    data = [{'title' : "gamestop", 'url' : "gamestop.com"}, {'title':"geico", 'url':"geico.com"}]
     return jsonify(data)
 
 @app.route("/<t>")
