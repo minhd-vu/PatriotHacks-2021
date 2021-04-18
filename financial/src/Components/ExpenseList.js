@@ -4,17 +4,17 @@ import { BudgetContext } from "../Contexts/BudgetContext"
 import { useContext } from "react"
 
 function ExpenseList() {
-    const { expenses, setExpenses, expenseTotal, setExpenseTotal } = useContext(BudgetContext)
+    const { expenses, setExpenses, expenseTotal, setExpenseTotal, budgetTotal } = useContext(BudgetContext)
     return (
         <div>
             <ListGroup>
-                {Object.keys(expenses).map(function(key, index) {return (
-                <ListGroup.Item><Expense name={key} value={expenses[key]}/></ListGroup.Item>)})}
+                {expenses.map(function(expense) {return (
+                <ListGroup.Item><Expense name={expense.name} value={expense.value} id={expense.id}/></ListGroup.Item>)})}
             </ListGroup>
             <Container>
                 <Row>
-                    { Object.keys(expenses).length !== 0 &&
-                        <Col><h1>Total: ${expenseTotal}</h1></Col>
+                    { expenses.length !== 0 &&
+                        <Col><h1>Total: ${budgetTotal.toFixed(2) - expenseTotal.toFixed(2)}</h1></Col>
                     }
                 </Row>
             </Container>

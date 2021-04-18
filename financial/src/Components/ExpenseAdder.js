@@ -7,7 +7,7 @@ import { BudgetContext } from '../Contexts/BudgetContext'
 function ExpenseAdder(props) {
     const [expenseInput, setExpenseInput] = useState(0)
     const [expenseNameInput, setExpenseNameInput] = useState("")
-    const { expenses, setExpenses, expenseTotal, setExpenseTotal } = useContext(BudgetContext);
+    const { expenses, setExpenses, expenseTotal, setExpenseTotal, setBudgetTotal } = useContext(BudgetContext);
 
     const expenseNameInputHandler = (e) => {
         setExpenseNameInput(e.target.value)
@@ -18,7 +18,11 @@ function ExpenseAdder(props) {
     }
 
     const addExpense = () => {
-        setExpenses({...expenses, [expenseNameInput]:expenseInput})
+        if (expenses.length >= 1) {
+            setExpenses([...expenses, {id: expenses[expenses.length - 1].id + 1, name: expenseNameInput, value: expenseInput}])
+        } else {
+            setExpenses([...expenses, {id: 1, name: expenseNameInput, value: expenseInput}])
+        }
         setExpenseTotal(expenseInput + expenseTotal);
     }
 
@@ -43,6 +47,7 @@ function ExpenseAdder(props) {
                     />
                 </FormGroup>
                 <Button onClick={addExpense} variant="primary">Add</Button>
+                <Button id="reset" onClick={(e) => { setBudgetTotal(0); setExpenses([]); }} variant="primary">Reset Budget</Button>
             </Form>
             
         </Card.Body>
