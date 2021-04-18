@@ -14,6 +14,7 @@ export default function EntryForm() {
     // const history = useHistory();
     const user = useContext(UserContext);
     const [hours, setHours] = useState("");
+    const [location, setLocation] = useState("");
     const [bags, setBags] = useState("");
 
     function onSubmit(e) {
@@ -23,6 +24,8 @@ export default function EntryForm() {
             location: value,
             hours: hours,
             bags: bags,
+            latitude: location.lat,
+            longitude: location.lng,
         }, { withCredentials: true })
             .then(res => {
                 if (res.status === 200) {
@@ -31,6 +34,7 @@ export default function EntryForm() {
                     setValue("");
                     setHours("");
                     setBags("");
+                    setLocation("");
                 }
             })
             .catch(err => {
@@ -73,6 +77,7 @@ export default function EntryForm() {
             .then((results) => getLatLng(results[0]))
             .then(({ lat, lng }) => {
                 console.log("📍 Coordinates: ", { lat, lng });
+                setLocation({ lat, lng });
             })
             .catch((error) => {
                 console.log("😱 Error: ", error);

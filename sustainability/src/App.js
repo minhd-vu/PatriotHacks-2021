@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "mapbox-gl/dist/mapbox-gl.css";
+import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 import Container from "react-bootstrap/Container";

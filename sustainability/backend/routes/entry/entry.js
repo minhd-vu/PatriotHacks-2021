@@ -14,6 +14,8 @@ router.route("/").post(isLoggedIn, async function (req, res) {
         location: req.body.location,
         hours: req.body.hours,
         bags: req.body.bags,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
     });
 
     await entry.save();

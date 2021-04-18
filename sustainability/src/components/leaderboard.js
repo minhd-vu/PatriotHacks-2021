@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Statistics from "./statistics";
+import Map from "./map";
 
 export default function Leaderboard() {
     const [users, setUsers] = useState([]);
@@ -46,6 +47,8 @@ export default function Leaderboard() {
     return (
         <React.Fragment>
             <Statistics {...stats} />
+            <br />
+            <Map />
             <br />
             <h3>Leaderboard</h3>
             <table className="table">
