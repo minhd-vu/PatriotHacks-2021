@@ -7,13 +7,14 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import Select
 from flask_cors import CORS
+from googlesearch.googlesearch import GoogleSearch
 
 options = Options()
 options.headless = True
 
 from flask import Flask
 
-def custom(tell):   
+'''def custom(tell):   
 
     #print ("The script has the name %s" % )
 
@@ -51,7 +52,7 @@ def custom(tell):
         #print(title)
         x+=1
         time.sleep(.01)
-    return links
+    return links'''
 
 
 
@@ -66,7 +67,16 @@ def home():
 @app.route("/<t>")
 def user(t):
     #return f"Hello{val}!"
-    return jsonify(custom(t))
+    response = GoogleSearch().search(t)
+    for result in response.results:
+        print("Title: " + result.title)
+        print("Content: " + result.getText())
+    return "<h1>hi</h1>"
+    '''data = []
+    res = GoogleSearch().search(t)
+    for result in res.results:
+        data.append({'title' : res.title, 'url' : result})
+    return jsonify(data)'''
 
 
 if __name__ == "__main__":
