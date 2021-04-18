@@ -1,6 +1,5 @@
-import { useState, useRef, useCallback } from "react";
-import ReactMapGL, { FullscreenControl, GeolocateControl, NavigationControl, Marker, Popup } from "react-map-gl";
-import Geocoder from "react-map-gl-geocoder";
+import { useState, useRef, useCallback, useEffect } from "react";
+import ReactMapGL, { FullscreenControl, GeolocateControl, NavigationControl, Marker } from "react-map-gl";
 import Pin from "./pin";
 import axios from "axios";
 
@@ -8,7 +7,7 @@ export default function Map() {
 	const [viewport, setViewport] = useState({
 		latitude: 38.8298,
 		longitude: -77.3074,
-		zoom: 12
+		zoom: 8
 	});
 
 	const [marker, setMarker] = useState([]);
@@ -31,15 +30,22 @@ export default function Map() {
 		[handleViewportChange]
 	);
 
-	function onResult(e) {
-		console.log(e);
-
-		setMarker(
-			<Marker latitude={e.result.center[1]} longitude={e.result.center[0]}>
-				<Pin size={20} />
-			</Marker>
-		);
-	}
+	useEffect(() => {
+		axios.get("/api/entry", { withCredentials: true })
+			.then(res => {
+				if (res.status === 200) {
+					console.log(res.data);
+					setMarker(res.data?.map((e) =>
+						<Marker key={e.createdAt} latitude={e.latitude} longitude={e.longitude}>
+							<Pin size={10} />
+						</Marker>
+					));
+				}
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}, []);
 
 	return (
 		<div style={{ height: "80vh" }}>
@@ -52,23 +58,12 @@ export default function Map() {
 				onViewportChange={handleViewportChange}
 				mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
 			>
-				<div style={{ position: "absolute", right: 0 }}>
-					<FullscreenControl />
-					<NavigationControl />
-					<GeolocateControl
-						positionOptions={{ enableHighAccuracy: true }}
-						trackUserLocation={true}
-					/>
-					<Geocoder
-						mapRef={mapRef}
-						trackProximity={true}
-						marker={true}
-						onResult={onResult}
-						onViewportChange={handleGeocoderViewportChange}
-						mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-					// position="top-left"
-					/>
-				</div>
+				<FullscreenControl />
+				<NavigationControl />
+				<GeolocateControl
+					positionOptions={{ enableHighAccuracy: true }}
+					trackUserLocation={true}
+				/>
 				{marker}
 			</ReactMapGL>
 		</div>
