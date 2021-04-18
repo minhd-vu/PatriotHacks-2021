@@ -10,7 +10,7 @@ export default function Leaderboard() {
         axios.get("/api/leaderboard", { withCredentials: true })
             .then(res => {
                 if (res.status === 200) {
-                    console.log(res.data);
+                    // console.log(res.data);
 
                     if (res.data) {
                         setUsers(res.data.map((e, i) => (

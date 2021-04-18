@@ -87,9 +87,9 @@ export default function EntryForm() {
             } = suggestion;
 
             return (
-                <a key={place_id} className="dropdown-item" onClick={handleSelect(suggestion)}>
+                <button key={place_id} className="dropdown-item" onClick={handleSelect(suggestion)}>
                     <strong>{main_text}</strong> <small>{secondary_text}</small>
-                </a>
+                </button>
             );
         });
 

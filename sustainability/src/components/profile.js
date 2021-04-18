@@ -31,7 +31,7 @@ export default function Profile(props) {
                 }
             })
             .catch(err => console.log(err));
-    }, [username, props]);
+    }, [username, props, user.username]);
 
     return (
         <React.Fragment>
