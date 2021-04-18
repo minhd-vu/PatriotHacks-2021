@@ -17,8 +17,8 @@ export default function Leaderboard() {
                             <tr key={e.username}>
                                 <td>{i + 1}</td>
                                 <td>{e.username}</td>
-                                <td>{e.hours}</td>
-                                <td>{e.bags}</td>
+                                <td>{e.hours.toFixed(1)}</td>
+                                <td>{e.bags.toFixed(1)}</td>
                             </tr>
                         )));
 
@@ -32,8 +32,8 @@ export default function Leaderboard() {
 
                         setStats({
                             totalUsers: res.data.length,
-                            totalHours: totalHours.toFixed(2),
-                            totalBags: totalBags.toFixed(2),
+                            totalHours: totalHours.toFixed(1),
+                            totalBags: totalBags.toFixed(1),
                         });
                     }
                 }

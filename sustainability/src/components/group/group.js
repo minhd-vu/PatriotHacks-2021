@@ -17,8 +17,8 @@ export default function Group() {
                         <tr key={e.username}>
                             <td>{i + 1}</td>
                             <td>{e.username}</td>
-                            <td>{e.hours.toFixed(2)}</td>
-                            <td>{e.bags.toFixed(2)}</td>
+                            <td>{e.hours.toFixed(1)}</td>
+                            <td>{e.bags.toFixed(1)}</td>
                         </tr>
                     )));
                 }
