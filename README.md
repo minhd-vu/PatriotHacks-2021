@@ -1,7 +1,5 @@
 # PatriotHacks-2021
 
-**We won PatriotHacks-2021! Check out our devpost [here](https://devpost.com/software/hack-sustainability).**
-
 <!-- PROJECT LOGO -->
 <p align="center">
   <h3 align="center">Sustainateers</h3>
@@ -15,6 +13,8 @@
     <a href="https://github.com/github_username/PatriotHacks-2021/issues">Request Feature</a>
   </p>
 </p>
+
+**We won PatriotHacks-2021! Check out our devpost [here](https://devpost.com/software/hack-sustainability).**
 
 ## Inspiration
 We were inspired by the mobile game Pokemon Go and the ways it allowed people to connect and work together to achieve a common goal. We wanted our game to allow users to achieve a common goal, which is cleaning local areas of trash and waste.
