@@ -6,7 +6,7 @@
   <p align="center">
     Clean up the Earth and have fun by competing against friends and the world to pick up the most trash!
     <br />
-    <a href="hacksustainability.herokuapp.com/">View Demo</a>
+    <a href="https://hacksustainability.herokuapp.com/">View Demo</a>
     ·
     <a href="https://github.com/github_username/PatriotHacks-2021/issues">Report Bug</a>
     ·
