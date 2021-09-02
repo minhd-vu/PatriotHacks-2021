@@ -1,6 +1,6 @@
 # PatriotHacks-2021
 
-We won PatriotHacks-2021! Check out our devpost [here](https://devpost.com/software/hack-sustainability).
+**We won PatriotHacks-2021! Check out our devpost [here](https://devpost.com/software/hack-sustainability).**
 
 <!-- PROJECT LOGO -->
 <p align="center">
